@@ -42,7 +42,9 @@ RUN apt-get install -y \
     xvfb \
     zlib1g-dev \
     libxml2-dev \
-    libxslt-dev
+    libxslt-dev \
+    python3-distutils \
+    python3-setuptools
 
 COPY entrypoint.sh /entrypoint.sh
 
