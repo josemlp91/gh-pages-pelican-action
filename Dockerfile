@@ -40,7 +40,9 @@ RUN apt-get install -y \
     tcl8.6-dev \
     tk8.6-dev \
     xvfb \
-    zlib1g-dev 
+    zlib1g-dev \
+    libxml2-dev \
+    libxslt-dev
 
 COPY entrypoint.sh /entrypoint.sh
 
