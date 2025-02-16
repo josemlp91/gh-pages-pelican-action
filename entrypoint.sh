@@ -9,17 +9,17 @@ remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITO
 remote_branch=${GH_PAGES_BRANCH:=gh-pages}
 
 echo 'Installing Python Requirements 🐍 '
-pip install -r requirements.txt
+uv sync --frozen --no-cache --no-dev
 
 if [ -n "$PELICAN_THEME_FOLDER" ]; then
     echo 'Installing Node Modules 🧰 '
     pushd $PELICAN_THEME_FOLDER
-    npm install
+    bun install
     popd
 fi
 
 echo 'Building site 👷 '
-pelican ${PELICAN_CONTENT_FOLDER:=content} -o output -s ${PELICAN_CONFIG_FILE:=pelicanconf.py}
+uv run python -m pelican ${PELICAN_CONTENT_FOLDER:=content} -o output -s ${PELICAN_CONFIG_FILE:=pelicanconf.py}
 
 echo 'Publishing to GitHub Pages 📤 '
 pushd output
